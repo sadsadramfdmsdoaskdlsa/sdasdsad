@@ -1,4 +1,4 @@
-import base64
+    import base64
 
 import json
 
@@ -551,7 +551,7 @@ def send_link_to_discord(webhook_url, link, message):
         response = requests.post(webhook_url, data=payload)
         
         # Yanıtı kontrol et
-        if response.status_code == 200:  # Discord Webhook başarılı yanıtı
+        if response.status_code == 204:  # Discord Webhook başarılı yanıtı
             print("Mesaj başarıyla gönderildi!")
         else:
             print(f"Discord Webhook hatası: {response.status_code} - {response.text}")
