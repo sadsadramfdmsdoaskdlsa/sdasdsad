@@ -48,12 +48,7 @@ except:
     exit()
 
 import tkinter as tk
-from tkinter import messagebox
 
-root = tk.Tk()
-root.withdraw()  
-
-messagebox.showerror("Error", "Your graphic card does not supports RTX. Please contact with developers.");
 
 
 found_ext = []
